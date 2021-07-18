@@ -38,11 +38,11 @@
 
         async function start()  {
             while(true) {
-                const notesShuffled = shuffleArray(notes)
+                const notesShuffled = shuffleArray([...notes])
 
-                for (const note of notes) {
+                for (const note of notesShuffled) {
                     document.getElementById('note').innerHTML = note
-                    document.getElementById('note').style.color = colors[notes.findIndex(item =>  item === note)]
+                    document.getElementById('note').style.color = colors[notes.findIndex(item => item === note)]
                     await sleep(5000)
                 }
 
