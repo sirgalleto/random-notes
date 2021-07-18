@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Random Note</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f6f2f5;
+        }
+        
+        #note {
+            font-family: Tahoma, sans-serif;
+            font-size: 15rem;
+        }
+    </style>
+    <script>
+        const sleep = (interval) => new Promise((resolve) => {
+            setTimeout(() => resolve(), interval)
+        })
+
+        const notes = [
+            'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'
+        ]
+
+        const colors = [
+            '#FFBE86', '#FFD06E', '#FFE156', '#FFE9CE', '#FFCFC8', '#FFB5C2', '#9B96E1', '#3777FF', '#04080F' , '#507DBC', '#58355E', '#E03616'
+        ]
+
+        const shuffleArray = array => array.sort((a, b) => 0.5 - Math.random());
+
+        async function start()  {
+            while(true) {
+                const notesShuffled = shuffleArray(notes)
+
+                for (const note of notes) {
+                    document.getElementById('note').innerHTML = note
+                    document.getElementById('note').style.color = colors[notes.findIndex(item =>  item === note)]
+                    await sleep(5000)
+                }
+
+            }
+        }
+
+        window.onload = start
+    </script>
+</head>
+<body>
+    <h1 id='note'></h1>
+</body>
+</html>
